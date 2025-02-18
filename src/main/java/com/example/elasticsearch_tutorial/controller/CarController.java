@@ -3,6 +3,7 @@ package com.example.elasticsearch_tutorial.controller;
 import com.example.elasticsearch_tutorial.model.CarModel;
 import com.example.elasticsearch_tutorial.repo.CarRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,6 +42,6 @@ public class CarController {
 
     @GetMapping("/find")
     public List<CarModel> findByBrand(@RequestParam String brand) {
-        return carRepository.findAllByBrand(brand);
+        return carRepository.findAllByBrand(brand, Sort.by("model").ascending());
     }
 }
